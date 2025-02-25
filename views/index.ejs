@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Groups</title>
+    <link rel="stylesheet" href="/stylesheet/index.css">
+</head>
+<body>
+    <div class="window">
+        <div class="title-bar">
+            <img src="/icons/AstraGenX.png" class="icon">
+            <span class="head">Task Groups</span>
+            <div class="window-controls">
+                <button class="minimize"></button>
+                <button class="maximize"></button>
+                <button class="close"></button>
+            </div>
+        </div>
+        
+        <div class="toolbar">
+            <img src="/icons/save.jpg" class="toolbar-icon" title="save">
+            <img src="/icons/new.jpg" class="toolbar-icon" title="new">
+            <img src="/icons/delete.jpg" class="toolbar-icon" title="delete">
+            <img src="/icons/filter.jpg" class="toolbar-icon" title="Filter">
+            <img src="/icons/firstrec.jpg" class="toolbar-icon" title="FirstPrevious">
+            <img src="/icons/prevrec.jpg" class="toolbar-icon" title="Previous">
+            <img src="/icons/nextrec.jpg" class="toolbar-icon" title="Next">
+            <img src="/icons/lastrec.jpg" class="toolbar-icon" title="Last">
+            <img src="/icons/excel.jpg" class="toolbar-icon" title="Excel">
+        </div>
+
+        <div class="content">
+            <form action="/search" method="post">
+                <label for="group-name">Group Name:</label>
+                <select id="groupName" name="searchkey" required class="group">
+                    <option value="">Select Group</option>
+                    <option value="Group A">Group A</option>
+                    <option value="Group B">Group B</option>
+                </select>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <button class="btn"><a href="create">Create User</a></button>
+    </div>
+    
+</body>
+</html>

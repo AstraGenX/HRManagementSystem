@@ -1,0 +1,122 @@
+/* General styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Window-like container */
+.window {
+  width: 450px;
+  background: #ffffff;
+  border: 2px solid #b0c4de;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  position: relative;
+}
+
+/* Title bar */
+.title-bar {
+  background: linear-gradient(to right, #b0c4de, #87aade);
+  color: white;
+  padding: 6px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  border-bottom: 2px solid #87aade;
+}
+
+.window-controls {
+  display: flex;
+  gap: 5px;
+}
+
+.window-controls button {
+  border: none;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+}
+
+.window-controls button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+/* Toolbar */
+.toolbar {
+  background: #f8f8f8;
+  padding: 5px 8px;
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid #ccc;
+}
+
+.toolbar img {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+/* Form Container */
+.content {
+  padding: 15px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Labels */
+label {
+  font-size: 14px;
+  font-weight: bold;
+  display: block;
+}
+
+/* Inputs and Select */
+input,
+select {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #a9a9a9;
+  border-radius: 3px;
+  font-size: 14px;
+  background: #ffffff;
+  outline: none;
+}
+
+select {
+  appearance: none; /* Removes default styles */
+  background: url("/icons/dropdown.png") no-repeat right center;
+  padding-right: 25px;
+}
+
+/* Button */
+button {
+  background: #4caf50;
+  color: white;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 3px;
+  margin-top: 10px;
+}
+
+button:hover {
+  background: #45a049;
+}
