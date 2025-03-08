@@ -17,36 +17,42 @@
             </div>
         </div>
 
-        <div class="toolbar">
-            <img src="/icons/save.jpg" class="toolbar-icon" title="save">
-            <img src="/icons/new.jpg" class="toolbar-icon" title="new">
-            <img src="/icons/delete.jpg" class="toolbar-icon" title="delete">
-            <img src="/icons/filter.jpg" class="toolbar-icon" title="Filter">
-            <img src="/icons/firstrec.jpg" class="toolbar-icon" title="FirstPrevious">
-            <img src="/icons/prevrec.jpg" class="toolbar-icon" title="Previous">
-            <img src="/icons/nextrec.jpg" class="toolbar-icon" title="Next">
-            <img src="/icons/lastrec.jpg" class="toolbar-icon" title="Last">
-            <img src="/icons/excel.jpg" class="toolbar-icon" title="Excel">
-        </div>
+      
 
         <div class="content">
-            <form action="/Dataentry" method="POST">
+            <form action="/Dataentry" method="POST" id="dataForm">
+                <div class="toolbar">
+                    <img src="/icons/save.jpg" class="toolbar-icon" title="save" id="saveBtn" onclick="submitForm()">
+                    <img src="/icons/new.jpg" class="toolbar-icon" title="new">
+                    <img src="/icons/delete.jpg" class="toolbar-icon" title="delete">
+                    <img src="/icons/filter.jpg" class="toolbar-icon" title="Filter">
+                    <img src="/icons/firstrec.jpg" class="toolbar-icon" title="FirstPrevious">
+                    <img src="/icons/prevrec.jpg" class="toolbar-icon" title="Previous">
+                    <img src="/icons/nextrec.jpg" class="toolbar-icon" title="Next">
+                    <img src="/icons/lastrec.jpg" class="toolbar-icon" title="Last">
+                    <img src="/icons/excel.jpg" class="toolbar-icon" title="Excel">
+                </div>
+            
                 <label for="groupName">Group Name:</label>
                 <select id="groupName" name="groupName" required>
                     <option value="">Select Group</option>
                     <option value="Group A">Group A</option>
                     <option value="Group B">Group B</option>
                 </select>
-
+            
                 <label for="memberName">Member Name:</label>
                 <input type="text" id="memberName" name="memberName" required>
-
+            
                 <label for="memberEmail">Member Email:</label>
                 <input type="email" id="memberEmail" name="memberEmail" required>
-
-                <button type="submit">Submit</button>
             </form>
         </div>
     </div>
+
+    <script>
+        function submitForm() {
+            document.getElementById("dataForm").submit();
+        }
+    </script>
 </body>
 </html>

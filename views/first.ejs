@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <title>User Data</title>
+</head>
+<body>
+
+    <div class="window">
+        <div class="title-bar">
+            <img src="/icons/AstraGenX.png" class="icon">
+            <span class="head">User Data</span>
+            <div class="window-controls">
+                <button class="minimize"></button>
+                <button class="maximize"></button>
+                <button class="close"></button>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <% if (users.length > 0) { %>
+                <table id="userTable">
+                    <thead>
+                        <tr>
+                            <th>Group Name</th>
+                            <th>Member Name</th>
+                            <th>Member Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% users.forEach(user => { %>
+                            <tr>
+                                <td><%= user.groupName %></td>
+                                <td><%= user.memberName %></td>
+                                <td><%= user.memberEmail %></td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+                <button class="btn" onclick="exportToExcel()">Export to Excel</button>
+            <% } else { %>
+                <p>No user data found.</p>
+            <% } %>
+
+            <button class="btn"><a href="/">Go Back</a></button>
+        </div>
+    </div>
+
+    <script>
+        function exportToExcel() {
+            let table = document.querySelector("#userTable");
+            let workbook = XLSX.utils.book_new();
+            let worksheet = XLSX.utils.table_to_sheet(table);
+            XLSX.utils.book_append_sheet(workbook, worksheet, "User Data");
+            XLSX.writeFile(workbook, "UserData.xlsx");
+        }
+    </script>
+
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: #f4f7f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .window {
+            width: 90%;
+            max-width: 1000px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .title-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #2ecc71;
+            padding: 10px 15px;
+            color: white;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .title-bar .icon {
+            width: 30px;
+        }
+
+        .window-controls button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: none;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+        .window-controls .minimize { background: #f1c40f; }
+        .window-controls .maximize { background: #2ecc71; }
+        .window-controls .close { background: #e74c3c; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            overflow-x: auto;
+            border-radius: 8px;
+        }
+
+        thead {
+            background: #2ecc71;
+            color: white;
+            font-weight: bold;
+        }
+
+        thead th {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 2px solid #27ae60;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f2f2f2;
+        }
+
+        tbody tr:hover {
+            background: #d1f2eb;
+            transition: 0.3s ease-in-out;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ccc;
+            text-align: left;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #fff;
+            background: #2ecc71;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #27ae60;
+        }
+    </style>
+
+</body>
+</html>

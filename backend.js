@@ -8,8 +8,9 @@ const User = require("./userModal.js");
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-// Middleware to parse form data
+// Middleware to parse JSON and form data
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json()); // Added to handle JSON requests
 
 // Serve static files (CSS, images, etc.)
 app.use(express.static(path.join(__dirname, "public")));
@@ -25,22 +26,18 @@ app.get("/create", (req, res) => {
 
 app.post("/Dataentry", async (req, res) => {
   try {
-    // Extract values properly
     const { groupName, memberName, memberEmail } = req.body;
 
-    // Ensure values are not undefined
     if (!groupName || !memberName || !memberEmail) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
-    // Create user entry in database
     await User.create({
       groupName,
       memberName,
       memberEmail,
     });
 
-    // Render success page after successful entry
     res.render("success");
   } catch (error) {
     console.error("Error creating user:", error);
@@ -48,20 +45,41 @@ app.post("/Dataentry", async (req, res) => {
   }
 });
 
-
 app.post("/search", async (req, res) => {
   try {
-      const groupName = req.body.searchkey;
-      const users = await User.find({ groupName: groupName });
+    const groupName = req.body.searchkey;
+    const users = await User.find({ groupName });
 
-      if (users.length === 0) {
-          return res.render("search", { users: [], message: "No users found for this group." });
-      }
+    if (users.length === 0) {
+      return res.render("search", { users: [], message: "No users found for this group." });
+    }
 
-      res.render("search", { users, message: null });
+    res.render("search", { users, message: null });
   } catch (error) {
-      console.error("Error fetching users:", error);
-      res.status(500).json({ message: "Internal Server Error" });
+    console.error("Error fetching users:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+// Route to handle deletion of a user by email
+app.post("/delete-user", async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    if (!email) {
+      return res.status(400).json({ success: false, message: "Email is required" });
+    }
+
+    const deletedUser = await User.findOneAndDelete({ memberEmail: email });
+
+    if (!deletedUser) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    res.json({ success: true, message: "User deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 });
 
